@@ -4,10 +4,9 @@ title: API Reference
 language_tabs:
   - shell
   - ruby
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://ivs.integros.com'>Sign Up for a Developer Key</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,67 +17,111 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Welcome to the Integros Video Layer API! You can use our API to access Integros Video Layer API endpoints, which can create task for uploading videos and get information about current video status.
 
 # Authentication
 
-> To authorize, use this code:
+To authorize, use `access_key` parameter, which can be pass in url, or you can pass token in HTTP headers.
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+```shell
+curl "http://api.integros.dev/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "http://api.integros.dev/v1/widgets/uploader.js" \
+     -H 'Authorization: Token token="7A939A92420E4C9BF075976ED5E82BA9"'
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+# Uploading
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+## Get url for [ResumableJS](http://www.resumablejs.com/)
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```shell
+curl "http://api.integros.dev/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9" -I
 ```
 
-```python
-import kittn
+> The above command returns JSON structured like this:
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+```json
+{
+  "id1": {
+    "token": "461c16e7e9fa7656",
+    "url": "http://ivs.integros.com:8081/upload_chunk?token=461c16e7e9fa7656&expires_at=12312321&sign=h47hf84ufh484ufh"
+  }
+}
+```
+
+### HTTP Request
+
+`GET http://api.integros.com/v1/uploads/get_resumable_url.json`
+
+### Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+files     | false   | Array of Hash <br/> `{ "id": "id1", "name": "file1.mp4", "size": 12312323 }`
+
+## Get url for uploading single file
+
+```shell
+curl "http://api.integros.com/v1/uploads/get_url.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "token": "461c16e7e9fa7656",
+  "url": "http://ivs.integros.com:8081/upload_chunk?token=461c16e7e9fa7656&expires_at=12312321&sign=h47hf84ufh484ufh"
+}
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl -i -F token=461c16e7e9fa1951 -F sign=e5a3997da9ddb73b4bed8e981a30bfb53164333da -F expires_at=1417181218 -F file=@GOPR1012.MP4 http://api.integros.com:8081/upload
+```
+
+### HTTP Request
+
+`GET http://api.integros.com/v1/uploads/get_url.json`
+
+### Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+file_name | false   | Video file name
+file_size | null    | Video filesize
+
+
+## Upload video by url
+
+```shell
+curl "http://api.integros.com/v1/uploads/upload_url.json?file_url=http://media.filmz.ru/trailer_rus/i/interstellar_trailer_rus.mp4&access_key=7A939A92420E4C9BF075976ED5E82BA9"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "token": "461c16e7e9fa7656" }
+```
+
+### HTTP Request
+
+`GET http://api.integros.com/v1/uploads/upload_url.json`
+
+### Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+file_url  | false   | Video URL
+file_name | Fetch from `file_url`    | Video file name
+
+
+# Videos
+
+## Get list of videos
+
+```shell
+curl "http://api.integros.com/v1/videos.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"
 ```
 
 > The above command returns JSON structured like this:
@@ -86,83 +129,59 @@ curl "http://example.com/api/kittens"
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "id": 20,
+    "token": "505eea833221d410",
+    "state": "done",
+    "progress": 100,
+    "created_at": "2014-06-19T17:32:41.153+04:00",
+    "updated_at": "2014-06-19T17:34:56.436+04:00",
+    "original_filename": "Dixar.For.theS01E05.x264-Black$caR.mkv"
   },
   {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "id": 21,
+    "token": "41006f91e122ea15",
+    "state": "done",
+    "progress": 100,
+    "created_at": "2014-06-19T17:32:54.556+04:00",
+    "updated_at": "2014-06-19T17:36:46.526+04:00",
+    "original_filename": "Pixar.For.the.Birds.2001.x264-Black$caR.mkv"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
-
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET http://api.integros.com/v1/videos.json`
 
-### Query Parameters
+### Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+page      | 1       | Page number
+per_page  | 30      | Videos per page
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get video detail information
 
 ```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
+curl "http://api.integros.com/v1/videos/b84b5c8571243115.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id": 20,
+  "token": "505eea833221d410",
+  "state": "done",
+  "progress": 100,
+  "created_at": "2014-06-19T17:32:41.153+04:00",
+  "updated_at": "2014-06-19T17:34:56.436+04:00",
+  "original_filename": "Dixar.For.theS01E05.x264-Black$caR.mkv"
 }
+
 ```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
-
+`GET http://api.integros.com/v1/videos/:id.json`
