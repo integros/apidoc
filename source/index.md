@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: IVS API Reference
 
 language_tabs:
   - shell
