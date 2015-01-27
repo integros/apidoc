@@ -24,11 +24,11 @@ Welcome to the Integros Video Layer API! You can use our API to access Integros 
 To authorize, use `access_key` parameter, which can be pass in url, or you can pass token in HTTP headers.
 
 ```shell
-curl "http://api.integros.dev/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"
+curl "http://api.integros.com/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"
 ```
 
 ```shell
-curl "http://api.integros.dev/v1/widgets/uploader.js" \
+curl "http://api.integros.com/v1/widgets/uploader.js" \
      -H 'Authorization: Token token="7A939A92420E4C9BF075976ED5E82BA9"'
 ```
 
@@ -37,7 +37,7 @@ curl "http://api.integros.dev/v1/widgets/uploader.js" \
 ## Get url for [ResumableJS](http://www.resumablejs.com/)
 
 ```shell
-curl "http://api.integros.dev/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9" -I
+curl "http://api.integros.com/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9" -I
 ```
 
 > The above command returns JSON structured like this:
@@ -135,7 +135,8 @@ curl "http://api.integros.com/v1/videos.json?access_key=7A939A92420E4C9BF075976E
     "progress": 100,
     "created_at": "2014-06-19T17:32:41.153+04:00",
     "updated_at": "2014-06-19T17:34:56.436+04:00",
-    "original_filename": "Dixar.For.theS01E05.x264-Black$caR.mkv"
+    "original_filename": "Dixar.For.theS01E05.x264-Black$caR.mkv",
+    "filesize": 11305838
   },
   {
     "id": 21,
@@ -144,7 +145,8 @@ curl "http://api.integros.com/v1/videos.json?access_key=7A939A92420E4C9BF075976E
     "progress": 100,
     "created_at": "2014-06-19T17:32:54.556+04:00",
     "updated_at": "2014-06-19T17:36:46.526+04:00",
-    "original_filename": "Pixar.For.the.Birds.2001.x264-Black$caR.mkv"
+    "original_filename": "Pixar.For.the.Birds.2001.x264-Black$caR.mkv",
+    "filesize": 11305838
   }
 ]
 ```
@@ -177,7 +179,8 @@ curl "http://api.integros.com/v1/videos/b84b5c8571243115.json?access_key=7A939A9
   "progress": 100,
   "created_at": "2014-06-19T17:32:41.153+04:00",
   "updated_at": "2014-06-19T17:34:56.436+04:00",
-  "original_filename": "Dixar.For.theS01E05.x264-Black$caR.mkv"
+  "original_filename": "Dixar.For.theS01E05.x264-Black$caR.mkv",
+  "filesize": 11305838
 }
 
 ```
