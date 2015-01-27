@@ -52,12 +52,12 @@
 <p>Welcome to the Integros Video Layer API! You can use our API to access Integros Video Layer API endpoints, which can create task for uploading videos and get information about current video status.</p>
 <h1 id='authentication'>Authentication</h1>
 <p>To authorize, use <code class="prettyprint">access_key</code> parameter, which can be pass in url, or you can pass token in HTTP headers.</p>
-<pre><code class="highlight shell">curl <span class="s2">"http://api.integros.dev/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
+<pre><code class="highlight shell">curl <span class="s2">"http://api.integros.com/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://api.integros.dev/v1/widgets/uploader.js"</span> <span class="se">\</span>
+<pre><code class="highlight shell">curl <span class="s2">"http://api.integros.com/v1/widgets/uploader.js"</span> <span class="se">\</span>
      -H <span class="s1">'Authorization: Token token="7A939A92420E4C9BF075976ED5E82BA9"'</span>
 </code></pre>
-<h1 id='uploading'>Uploading</h1><h2 id='get-url-for-a-hrefhttpwww-resumablejs-comresumablejsa'>Get url for <a href="http://www.resumablejs.com/">ResumableJS</a></h2><pre><code class="highlight shell">curl <span class="s2">"http://api.integros.dev/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span> -I
+<h1 id='uploading'>Uploading</h1><h2 id='get-url-for-a-hrefhttpwww-resumablejs-comresumablejsa'>Get url for <a href="http://www.resumablejs.com/">ResumableJS</a></h2><pre><code class="highlight shell">curl <span class="s2">"http://api.integros.com/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span> -I
 </code></pre>
 
 <blockquote>
@@ -163,7 +163,8 @@
     </span><span class="s2">"progress"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-19T17:32:41.153+04:00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-19T17:34:56.436+04:00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"original_filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dixar.For.theS01E05.x264-Black$caR.mkv"</span><span class="w">
+    </span><span class="s2">"original_filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dixar.For.theS01E05.x264-Black$caR.mkv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filesize"</span><span class="p">:</span><span class="w"> </span><span class="mi">11305838</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
@@ -172,7 +173,8 @@
     </span><span class="s2">"progress"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-19T17:32:54.556+04:00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-19T17:36:46.526+04:00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"original_filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pixar.For.the.Birds.2001.x264-Black$caR.mkv"</span><span class="w">
+    </span><span class="s2">"original_filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pixar.For.the.Birds.2001.x264-Black$caR.mkv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filesize"</span><span class="p">:</span><span class="w"> </span><span class="mi">11305838</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -210,7 +212,8 @@
   </span><span class="s2">"progress"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-19T17:32:41.153+04:00"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-19T17:34:56.436+04:00"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"original_filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dixar.For.theS01E05.x264-Black$caR.mkv"</span><span class="w">
+  </span><span class="s2">"original_filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dixar.For.theS01E05.x264-Black$caR.mkv"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"filesize"</span><span class="p">:</span><span class="w"> </span><span class="mi">11305838</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
