@@ -24,11 +24,11 @@ Welcome to the Integros Video Layer API! You can use our API to access Integros 
 To authorize, use `access_key` parameter, which can be pass in url, or you can pass token in HTTP headers.
 
 ```shell
-curl "http://api.integros.com/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"
+curl "https://api.integros.com/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"
 ```
 
 ```shell
-curl "http://api.integros.com/v1/widgets/uploader.js" \
+curl "https://api.integros.com/v1/widgets/uploader.js" \
      -H 'Authorization: Token token="7A939A92420E4C9BF075976ED5E82BA9"'
 ```
 
@@ -37,7 +37,7 @@ curl "http://api.integros.com/v1/widgets/uploader.js" \
 ## Get url for [ResumableJS](http://www.resumablejs.com/)
 
 ```shell
-curl "http://api.integros.com/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9" -I
+curl "https://api.integros.com/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9" -I
 ```
 
 > The above command returns JSON structured like this:
@@ -53,7 +53,7 @@ curl "http://api.integros.com/v1/uploads/get_resumable_url.js?access_key=7A939A9
 
 ### HTTP Request
 
-`GET http://api.integros.com/v1/uploads/get_resumable_url.json`
+`GET https://api.integros.com/v1/uploads/get_resumable_url.json`
 
 ### Parameters
 
@@ -64,7 +64,7 @@ files     | false   | Array of Hash <br/> `{ "id": "id1", "name": "file1.mp4", "
 ## Get url for uploading single file
 
 ```shell
-curl "http://api.integros.com/v1/uploads/get_url.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"
+curl "https://api.integros.com/v1/uploads/get_url.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"
 ```
 
 > The above command returns JSON structured like this:
@@ -82,20 +82,19 @@ curl -i -F token=461c16e7e9fa1951 -F sign=e5a3997da9ddb73b4bed8e981a30bfb5316433
 
 ### HTTP Request
 
-`GET http://api.integros.com/v1/uploads/get_url.json`
+`GET https://api.integros.com/v1/uploads/get_url.json`
 
 ### Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
 file_name | false   | Video file name
-file_size | null    | Video filesize
 
 
 ## Upload video by url
 
 ```shell
-curl "http://api.integros.com/v1/uploads/upload_url.json?file_url=http://media.filmz.ru/trailer_rus/i/interstellar_trailer_rus.mp4&access_key=7A939A92420E4C9BF075976ED5E82BA9"
+curl "https://api.integros.com/v1/uploads/upload_url.json?file_url=http://media.filmz.ru/trailer_rus/i/interstellar_trailer_rus.mp4&access_key=7A939A92420E4C9BF075976ED5E82BA9"
 ```
 
 > The above command returns JSON structured like this:
@@ -106,7 +105,7 @@ curl "http://api.integros.com/v1/uploads/upload_url.json?file_url=http://media.f
 
 ### HTTP Request
 
-`GET http://api.integros.com/v1/uploads/upload_url.json`
+`GET https://api.integros.com/v1/uploads/upload_url.json`
 
 ### Parameters
 
@@ -121,7 +120,7 @@ file_name | Fetch from `file_url`    | Video file name
 ## Get list of videos
 
 ```shell
-curl "http://api.integros.com/v1/videos.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"
+curl "https://api.integros.com/v1/videos.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"
 ```
 
 > The above command returns JSON structured like this:
@@ -153,7 +152,7 @@ curl "http://api.integros.com/v1/videos.json?access_key=7A939A92420E4C9BF075976E
 
 ### HTTP Request
 
-`GET http://api.integros.com/v1/videos.json`
+`GET https://api.integros.com/v1/videos.json`
 
 ### Parameters
 
@@ -166,7 +165,7 @@ per_page  | 30      | Videos per page
 ## Get video detail information
 
 ```shell
-curl "http://api.integros.com/v1/videos/b84b5c8571243115.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"
+curl "https://api.integros.com/v1/videos/b84b5c8571243115.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"
 ```
 
 > The above command returns JSON structured like this:
@@ -187,4 +186,4 @@ curl "http://api.integros.com/v1/videos/b84b5c8571243115.json?access_key=7A939A9
 
 ### HTTP Request
 
-`GET http://api.integros.com/v1/videos/:id.json`
+`GET https://api.integros.com/v1/videos/:id.json`
