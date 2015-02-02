@@ -52,12 +52,12 @@
 <p>Welcome to the Integros Video Layer API! You can use our API to access Integros Video Layer API endpoints, which can create task for uploading videos and get information about current video status.</p>
 <h1 id='authentication'>Authentication</h1>
 <p>To authorize, use <code class="prettyprint">access_key</code> parameter, which can be pass in url, or you can pass token in HTTP headers.</p>
-<pre><code class="highlight shell">curl <span class="s2">"http://api.integros.com/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://api.integros.com/v1/widgets/uploader.js"</span> <span class="se">\</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/widgets/uploader.js"</span> <span class="se">\</span>
      -H <span class="s1">'Authorization: Token token="7A939A92420E4C9BF075976ED5E82BA9"'</span>
 </code></pre>
-<h1 id='uploading'>Uploading</h1><h2 id='get-url-for-a-hrefhttpwww-resumablejs-comresumablejsa'>Get url for <a href="http://www.resumablejs.com/">ResumableJS</a></h2><pre><code class="highlight shell">curl <span class="s2">"http://api.integros.com/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span> -I
+<h1 id='uploading'>Uploading</h1><h2 id='get-url-for-a-hrefhttpwww-resumablejs-comresumablejsa'>Get url for <a href="http://www.resumablejs.com/">ResumableJS</a></h2><pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span> -I
 </code></pre>
 
 <blockquote>
@@ -71,7 +71,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://api.integros.com/v1/uploads/get_resumable_url.json</code></p>
+<p><code class="prettyprint">GET https://api.integros.com/v1/uploads/get_resumable_url.json</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
@@ -86,7 +86,7 @@
 <td>Array of Hash <br/> <code class="prettyprint">{ &quot;id&quot;: &quot;id1&quot;, &quot;name&quot;: &quot;file1.mp4&quot;, &quot;size&quot;: 12312323 }</code></td>
 </tr>
 </tbody></table>
-<h2 id='get-url-for-uploading-single-file'>Get url for uploading single file</h2><pre><code class="highlight shell">curl <span class="s2">"http://api.integros.com/v1/uploads/get_url.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
+<h2 id='get-url-for-uploading-single-file'>Get url for uploading single file</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/uploads/get_url.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
 </code></pre>
 
 <blockquote>
@@ -100,7 +100,7 @@
 <pre><code class="highlight shell">curl -i -F <span class="nv">token</span><span class="o">=</span>461c16e7e9fa1951 -F <span class="nv">sign</span><span class="o">=</span>e5a3997da9ddb73b4bed8e981a30bfb53164333da -F <span class="nv">expires_at</span><span class="o">=</span>1417181218 -F <span class="nv">file</span><span class="o">=</span>@GOPR1012.MP4 http://api.integros.com:8081/upload
 </code></pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://api.integros.com/v1/uploads/get_url.json</code></p>
+<p><code class="prettyprint">GET https://api.integros.com/v1/uploads/get_url.json</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
@@ -114,13 +114,8 @@
 <td>false</td>
 <td>Video file name</td>
 </tr>
-<tr>
-<td>file_size</td>
-<td>null</td>
-<td>Video filesize</td>
-</tr>
 </tbody></table>
-<h2 id='upload-video-by-url'>Upload video by url</h2><pre><code class="highlight shell">curl <span class="s2">"http://api.integros.com/v1/uploads/upload_url.json?file_url=http://media.filmz.ru/trailer_rus/i/interstellar_trailer_rus.mp4&amp;access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
+<h2 id='upload-video-by-url'>Upload video by url</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/uploads/upload_url.json?file_url=http://media.filmz.ru/trailer_rus/i/interstellar_trailer_rus.mp4&amp;access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
 </code></pre>
 
 <blockquote>
@@ -129,7 +124,7 @@
 <pre><code class="highlight json"><span class="p">{</span><span class="w"> </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"461c16e7e9fa7656"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://api.integros.com/v1/uploads/upload_url.json</code></p>
+<p><code class="prettyprint">GET https://api.integros.com/v1/uploads/upload_url.json</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
@@ -149,7 +144,7 @@
 <td>Video file name</td>
 </tr>
 </tbody></table>
-<h1 id='videos'>Videos</h1><h2 id='get-list-of-videos'>Get list of videos</h2><pre><code class="highlight shell">curl <span class="s2">"http://api.integros.com/v1/videos.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
+<h1 id='videos'>Videos</h1><h2 id='get-list-of-videos'>Get list of videos</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/videos.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
 </code></pre>
 
 <blockquote>
@@ -179,7 +174,7 @@
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://api.integros.com/v1/videos.json</code></p>
+<p><code class="prettyprint">GET https://api.integros.com/v1/videos.json</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
@@ -199,7 +194,7 @@
 <td>Videos per page</td>
 </tr>
 </tbody></table>
-<h2 id='get-video-detail-information'>Get video detail information</h2><pre><code class="highlight shell">curl <span class="s2">"http://api.integros.com/v1/videos/b84b5c8571243115.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
+<h2 id='get-video-detail-information'>Get video detail information</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/videos/b84b5c8571243115.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
 </code></pre>
 
 <blockquote>
@@ -218,7 +213,7 @@
 
 </span></code></pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://api.integros.com/v1/videos/:id.json</code></p>
+<p><code class="prettyprint">GET https://api.integros.com/v1/videos/:id.json</code></p>
 
           <!-- # Errors
 
