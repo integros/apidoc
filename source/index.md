@@ -39,7 +39,8 @@ curl "https://api.integros.com/v1/widgets/uploader.js" \
   var _integros = _integros || [];
 
   _integros.push(['_setApiUrl', 'https://api.integros.com/v1/uploads/get_resumable_url']);
-  _integros.push(['_setStylesUrl', '//api.integros.com/uploading_widget']);
+  _integros.push(['_setAccessKey', '{{ access_key }}']);
+  _integros.push(['_setStylesUrl', 'https://api.integros.com/uploading_widget/uploading_widget.css']);
   _integros.push(['_setContainerId', '#uploading-widget']);
 
   (function() {
