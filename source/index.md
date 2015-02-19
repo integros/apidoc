@@ -32,6 +32,29 @@ curl "https://api.integros.com/v1/widgets/uploader.js" \
      -H 'Authorization: Token token="7A939A92420E4C9BF075976ED5E82BA9"'
 ```
 
+# Uploading widget
+
+```html
+<script>
+  var _integros = _integros || [];
+
+  _integros.push(['_setApiUrl', 'https://api.integros.com/v1/uploads/get_resumable_url']);
+  _integros.push(['_setStylesUrl', '//api.integros.com/uploading_widget']);
+  _integros.push(['_setContainerId', '#uploading-widget']);
+
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = '//api.integros.com/uploading_widget/uploading_widget.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script>
+
+<div id="uploading-widget" class="ivs-uploading-widget"></div>
+```
+
 # Uploading
 
 ## Get url for [ResumableJS](http://www.resumablejs.com/)
