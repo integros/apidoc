@@ -64,6 +64,13 @@
   <span class="nx">_integros</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'_setAccessKey'</span><span class="p">,</span> <span class="s1">'{{ access_key }}'</span><span class="p">]);</span>
   <span class="nx">_integros</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'_setStylesUrl'</span><span class="p">,</span> <span class="s1">'https://api.integros.com/uploading_widget/uploading_widget.css'</span><span class="p">]);</span>
   <span class="nx">_integros</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'_setContainerId'</span><span class="p">,</span> <span class="s1">'#uploading-widget'</span><span class="p">]);</span>
+  <span class="nx">_integros</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'_setOnFileProgress'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Progress'</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span> <span class="p">}]);</span>
+  <span class="nx">_integros</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'_setOnFileSuccess'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Success'</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span> <span class="p">}]);</span>
+  <span class="nx">_integros</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'_setOnFileError'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Error'</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span> <span class="p">}]);</span>
+  <span class="nx">_integros</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'_setOnBeforeAdd'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'BeforeAdd'</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}]);</span>
+  <span class="nx">_integros</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'_setLanguage'</span><span class="p">,</span> <span class="s1">'eng'</span><span class="p">]);</span>
+  <span class="nx">_integros</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'_setSingleFile'</span><span class="p">,</span> <span class="kc">true</span><span class="p">]);</span>
+  <span class="nx">_integros</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'_setFileName'</span><span class="p">,</span> <span class="s1">'custom_file_name.mp4'</span><span class="p">]);</span>
 
   <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'script'</span><span class="p">);</span>
@@ -76,6 +83,84 @@
 <span class="nt">&lt;/script&gt;</span>
 
 <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"uploading-widget"</span> <span class="na">class=</span><span class="s">"ivs-uploading-widget"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_setApiUrl</td>
+<td>https://api.integros.com /v1/uploads/get_resumable_url</td>
+<td></td>
+</tr>
+<tr>
+<td>_setAccessKey</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>_setStylesUrl</td>
+<td>https://api.integros.com /uploading_widget/uploading_widget.css</td>
+<td>Custom styles url</td>
+</tr>
+<tr>
+<td>_setContainerId</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>_setOnFileProgress</td>
+<td></td>
+<td>Callback</td>
+</tr>
+<tr>
+<td>_setOnFileSuccess</td>
+<td></td>
+<td>Callback</td>
+</tr>
+<tr>
+<td>_setOnFileError</td>
+<td></td>
+<td>Callback</td>
+</tr>
+<tr>
+<td>_setOnBeforeAdd</td>
+<td></td>
+<td>Validation callback. If it&rsquo;s set need to return <code class="prettyprint">true</code> or <code class="prettyprint">false</code>.</td>
+</tr>
+<tr>
+<td>_setLanguage</td>
+<td>rus</td>
+<td><code class="prettyprint">rus</code> or <code class="prettyprint">eng</code></td>
+</tr>
+<tr>
+<td>_setSingleFile</td>
+<td>false</td>
+<td>Single file uploader?</td>
+</tr>
+<tr>
+<td>_setFileName</td>
+<td></td>
+<td>File name for single upload</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>or you can use it manually</p>
+</blockquote>
+<pre><code class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">uploader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Integros</span><span class="p">.</span><span class="nx">Uploader</span><span class="p">({</span>
+  <span class="na">apiUrl</span><span class="p">:</span> <span class="s1">'http://api.integros.dev/v1/uploads/get_resumable_url'</span><span class="p">,</span>
+  <span class="na">apiAccessKey</span><span class="p">:</span> <span class="s1">'7A939A92420E4C9BF075976ED5E82BA9'</span><span class="p">,</span>
+  <span class="na">singleFile</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">fileName</span><span class="p">:</span> <span class="s1">'custom_file_name.mp4'</span><span class="p">,</span>
+  <span class="na">widget</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">container</span><span class="p">:</span> <span class="s1">'#uploading-widget'</span>
+  <span class="p">}</span>
+<span class="p">})</span>
 </code></pre>
 <h1 id='uploading'>Uploading</h1><h2 id='get-url-for-a-hrefhttpwww-resumablejs-comresumablejsa'>Get url for <a href="http://www.resumablejs.com/">ResumableJS</a></h2><pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span> -I
 </code></pre>
