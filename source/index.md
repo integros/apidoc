@@ -42,6 +42,13 @@ curl "https://api.integros.com/v1/widgets/uploader.js" \
   _integros.push(['_setAccessKey', '{{ access_key }}']);
   _integros.push(['_setStylesUrl', 'https://api.integros.com/uploading_widget/uploading_widget.css']);
   _integros.push(['_setContainerId', '#uploading-widget']);
+  _integros.push(['_setOnFileProgress', function() { console.log('Progress', arguments); }]);
+  _integros.push(['_setOnFileSuccess', function() { console.log('Success', arguments); }]);
+  _integros.push(['_setOnFileError', function() { console.log('Error', arguments); }]);
+  _integros.push(['_setOnBeforeAdd', function() { console.log('BeforeAdd', arguments); return true; }]);
+  _integros.push(['_setLanguage', 'eng']);
+  _integros.push(['_setSingleFile', true]);
+  _integros.push(['_setFileName', 'custom_file_name.mp4']);
 
   (function() {
     var script = document.createElement('script');
@@ -54,6 +61,35 @@ curl "https://api.integros.com/v1/widgets/uploader.js" \
 </script>
 
 <div id="uploading-widget" class="ivs-uploading-widget"></div>
+```
+
+Parameter           | Default                                                 | Description
+------------------- | ------------------------------------------------------- | -----------
+_setApiUrl          | https://api.integros.com /v1/uploads/get_resumable_url   |
+_setAccessKey       |                                                         |
+_setStylesUrl       | https://api.integros.com /uploading_widget/uploading_widget.css | Custom styles url
+_setContainerId     |                                                         |
+_setOnFileProgress  |                                                         | Callback
+_setOnFileSuccess   |                                                         | Callback
+_setOnFileError     |                                                         | Callback
+_setOnBeforeAdd     |                                                         | Validation callback. If it's set need to return `true` or `false`.
+_setLanguage        | rus                                                     | `rus` or `eng`
+_setSingleFile      | false                                                   | Single file uploader?
+_setFileName        |                                                         | File name for single upload
+
+
+> or you can use it manually
+
+```js
+window.uploader = new Integros.Uploader({
+  apiUrl: 'http://api.integros.dev/v1/uploads/get_resumable_url',
+  apiAccessKey: '7A939A92420E4C9BF075976ED5E82BA9',
+  singleFile: true,
+  fileName: 'custom_file_name.mp4',
+  widget: {
+    container: '#uploading-widget'
+  }
+})
 ```
 
 # Uploading
