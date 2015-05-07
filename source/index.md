@@ -1,5 +1,5 @@
 ---
-title: IVS API Reference
+title: Integros API Reference
 
 language_tabs:
   - shell
