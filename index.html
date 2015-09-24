@@ -51,11 +51,12 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the Integros Video Layer API! You can use our API to access Integros Video Layer API endpoints, which can create task for uploading videos and get information about current video status.</p>
 <h1 id='authentication'>Authentication</h1>
-<p>To authorize, use <code class="prettyprint">access_key</code> parameter, which can be pass in url, or you can pass token in HTTP headers.</p>
-<pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
+<p>Using url parameter <code class="prettyprint">access_key=cbPZ1Z9ub98r</code></p>
+<pre><code class="highlight shell">curl -i -F <span class="nv">access_key</span><span class="o">=</span>cbPZ1Z9ub98r -F <span class="nv">video</span><span class="o">=</span>@Parovozik_iz_romashkova.avi https://api.integros.com/v1/upload
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/widgets/uploader.js"</span> <span class="se">\</span>
-     -H <span class="s1">'Authorization: Token token="7A939A92420E4C9BF075976ED5E82BA9"'</span>
+
+<p>Using http basic authentication</p>
+<pre><code class="highlight shell">curl -i -F <span class="nv">video</span><span class="o">=</span>@Parovozik_iz_romashkova.avi -u cbPZ1Z9ub98r: https://api.integros.com/v1/upload
 </code></pre>
 <h1 id='uploading-widget'>Uploading widget</h1><pre><code class="highlight html"><span class="nt">&lt;script&gt;</span>
   <span class="kd">var</span> <span class="nx">_integros</span> <span class="o">=</span> <span class="nx">_integros</span> <span class="o">||</span> <span class="p">[];</span>
@@ -162,16 +163,18 @@
   <span class="p">}</span>
 <span class="p">})</span>
 </code></pre>
-<h1 id='uploading'>Uploading</h1><h2 id='get-url-for-a-hrefhttpwww-resumablejs-comresumablejsa'>Get url for <a href="http://www.resumablejs.com/">ResumableJS</a></h2><pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span> -I
+<h1 id='uploading'>Uploading</h1><h2 id='get-url-for-a-hrefhttpwww-resumablejs-comresumablejsa'>Get url for <a href="http://www.resumablejs.com/">ResumableJS</a></h2><pre><code class="highlight shell">curl -I -F files[]<span class="o">=</span> <span class="s2">"https://api.integros.com/v1/uploads/get_resumable_url.js?access_key=cbPZ1Z9ub98r"</span>
 </code></pre>
+
+<p>Get uploading urls for ResumableJS</p>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"id1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"461c16e7e9fa7656"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://ivs.integros.com:8081/upload_chunk?token=461c16e7e9fa7656&amp;expires_at=12312321&amp;sign=h47hf84ufh484ufh"</span><span class="w">
+    </span><span class="err">token</span><span class="p">:</span><span class="w"> </span><span class="s2">"461c16e7e9fa7656"</span><span class="p">,</span><span class="w">
+    </span><span class="err">url</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.integros.com/v1/upload_chunk?token=461c16e7e9fa7656\u0026process_token=e12d37e14f0ef07b\u0026expires_at=12312321\u0026sign=h47hf84ufh484ufh"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -191,21 +194,24 @@
 <td>Array of Hash <br/> <code class="prettyprint">{ &quot;id&quot;: &quot;id1&quot;, &quot;name&quot;: &quot;file1.mp4&quot;, &quot;size&quot;: 12312323 }</code></td>
 </tr>
 </tbody></table>
-<h2 id='get-url-for-uploading-single-file'>Get url for uploading single file</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/uploads/get_url.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
+<h2 id='upload-video-file'>Upload video file</h2><pre><code class="highlight shell">curl -i -F <span class="nv">video</span><span class="o">=</span>@Parovozik_iz_romashkova.avi -u cbPZ1Z9ub98r: https://api.integros.com/v1/upload
+</code></pre>
+
+<blockquote>
+<p>or</p>
+</blockquote>
+<pre><code class="highlight shell">curl -i -F <span class="nv">access_key</span><span class="o">=</span>cbPZ1Z9ub98r -F <span class="nv">video</span><span class="o">=</span>@Parovozik_iz_romashkova.avi https://api.integros.com/v1/upload
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"461c16e7e9fa7656"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://ivs.integros.com:8081/upload_chunk?token=461c16e7e9fa7656&amp;expires_at=12312321&amp;sign=h47hf84ufh484ufh"</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"461c16e7e9fa7656"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre><code class="highlight shell">curl -i -F <span class="nv">token</span><span class="o">=</span>461c16e7e9fa1951 -F <span class="nv">sign</span><span class="o">=</span>e5a3997da9ddb73b4bed8e981a30bfb53164333da -F <span class="nv">expires_at</span><span class="o">=</span>1417181218 -F <span class="nv">file</span><span class="o">=</span>@GOPR1012.MP4 http://api.integros.com:8081/upload
-</code></pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET https://api.integros.com/v1/uploads/get_url.json</code></p>
+<p><code class="prettyprint">GET https://api.integros.com/v1/upload</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
@@ -215,12 +221,18 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>file_name</td>
+<td>video</td>
 <td>false</td>
-<td>Video file name</td>
+<td>Video file</td>
 </tr>
 </tbody></table>
-<h2 id='upload-video-by-url'>Upload video by url</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.integros.com/v1/uploads/upload_url.json?file_url=http://media.filmz.ru/trailer_rus/i/interstellar_trailer_rus.mp4&amp;access_key=7A939A92420E4C9BF075976ED5E82BA9"</span>
+<h2 id='upload-video-by-url'>Upload video by url</h2><pre><code class="highlight shell">curl -i -F <span class="nv">access_key</span><span class="o">=</span>cbPZ1Z9ub98r -F <span class="nv">video</span><span class="o">=</span>http://media.filmz.ru/youtube/KnBRRS9bQUo_22.mp4 https://api.integros.com/v1/upload
+</code></pre>
+
+<blockquote>
+<p>or</p>
+</blockquote>
+<pre><code class="highlight shell">curl -i -F <span class="nv">video</span><span class="o">=</span>http://media.filmz.ru/youtube/KnBRRS9bQUo_22.mp4 -u cbPZ1Z9ub98r: https://api.integros.com/v1/upload<span class="sb">`</span>
 </code></pre>
 
 <blockquote>
