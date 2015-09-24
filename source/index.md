@@ -21,16 +21,18 @@ Welcome to the Integros Video Layer API! You can use our API to access Integros 
 
 # Authentication
 
-To authorize, use `access_key` parameter, which can be pass in url, or you can pass token in HTTP headers.
+Using url parameter `access_key=cbPZ1Z9ub98r`
 
 ```shell
-curl "https://api.integros.com/v1/widgets/uploader.js?access_key=7A939A92420E4C9BF075976ED5E82BA9"
+curl -i -F access_key=cbPZ1Z9ub98r -F video=@Parovozik_iz_romashkova.avi https://api.integros.com/v1/upload
 ```
 
+Using http basic authentication
+
 ```shell
-curl "https://api.integros.com/v1/widgets/uploader.js" \
-     -H 'Authorization: Token token="7A939A92420E4C9BF075976ED5E82BA9"'
+curl -i -F video=@Parovozik_iz_romashkova.avi -u cbPZ1Z9ub98r: https://api.integros.com/v1/upload
 ```
+
 
 # Uploading widget
 
@@ -97,16 +99,18 @@ window.uploader = new Integros.Uploader({
 ## Get url for [ResumableJS](http://www.resumablejs.com/)
 
 ```shell
-curl "https://api.integros.com/v1/uploads/get_resumable_url.js?access_key=7A939A92420E4C9BF075976ED5E82BA9" -I
+curl -I -F files[]= "https://api.integros.com/v1/uploads/get_resumable_url.js?access_key=cbPZ1Z9ub98r"
 ```
+
+Get uploading urls for ResumableJS
 
 > The above command returns JSON structured like this:
 
 ```json
 {
   "id1": {
-    "token": "461c16e7e9fa7656",
-    "url": "http://ivs.integros.com:8081/upload_chunk?token=461c16e7e9fa7656&expires_at=12312321&sign=h47hf84ufh484ufh"
+    token: "461c16e7e9fa7656",
+    url: "https://api.integros.com/v1/upload_chunk?token=461c16e7e9fa7656\u0026process_token=e12d37e14f0ef07b\u0026expires_at=12312321\u0026sign=h47hf84ufh484ufh"
   }
 }
 ```
@@ -121,40 +125,46 @@ Parameter | Default | Description
 --------- | ------- | -----------
 files     | false   | Array of Hash <br/> `{ "id": "id1", "name": "file1.mp4", "size": 12312323 }`
 
-## Get url for uploading single file
+## Upload video file
 
 ```shell
-curl "https://api.integros.com/v1/uploads/get_url.json?access_key=7A939A92420E4C9BF075976ED5E82BA9"
+curl -i -F video=@Parovozik_iz_romashkova.avi -u cbPZ1Z9ub98r: https://api.integros.com/v1/upload
+```
+> or
+
+```shell
+curl -i -F access_key=cbPZ1Z9ub98r -F video=@Parovozik_iz_romashkova.avi https://api.integros.com/v1/upload
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "token": "461c16e7e9fa7656",
-  "url": "http://ivs.integros.com:8081/upload_chunk?token=461c16e7e9fa7656&expires_at=12312321&sign=h47hf84ufh484ufh"
+  "token": "461c16e7e9fa7656"
 }
-```
-
-```shell
-curl -i -F token=461c16e7e9fa1951 -F sign=e5a3997da9ddb73b4bed8e981a30bfb53164333da -F expires_at=1417181218 -F file=@GOPR1012.MP4 http://api.integros.com:8081/upload
 ```
 
 ### HTTP Request
 
-`GET https://api.integros.com/v1/uploads/get_url.json`
+`GET https://api.integros.com/v1/upload`
 
 ### Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-file_name | false   | Video file name
+video     | false   | Video file
 
 
 ## Upload video by url
 
 ```shell
-curl "https://api.integros.com/v1/uploads/upload_url.json?file_url=http://media.filmz.ru/trailer_rus/i/interstellar_trailer_rus.mp4&access_key=7A939A92420E4C9BF075976ED5E82BA9"
+curl -i -F access_key=cbPZ1Z9ub98r -F video=http://media.filmz.ru/youtube/KnBRRS9bQUo_22.mp4 https://api.integros.com/v1/upload
+```
+
+> or
+
+```shell
+curl -i -F video=http://media.filmz.ru/youtube/KnBRRS9bQUo_22.mp4 -u cbPZ1Z9ub98r: https://api.integros.com/v1/upload`
 ```
 
 > The above command returns JSON structured like this:
