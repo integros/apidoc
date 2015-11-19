@@ -175,14 +175,14 @@ curl -i -F video=http://media.filmz.ru/youtube/KnBRRS9bQUo_22.mp4 -u cbPZ1Z9ub98
 
 ### HTTP Request
 
-`GET https://api.integros.com/v1/uploads/upload_url.json`
+`GET https://api.integros.com/v1/upload`
 
 ### Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-file_url  | false   | Video URL
-file_name | Fetch from `file_url`    | Video file name
+video     | false   | Video URL
+file_name | Fetch from `video`    | Video file name
 
 
 # Videos
